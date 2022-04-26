@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import DurationDisplay from '../components/DurationDisplay';
 import TimeSelector from '../components/TimeSelector';
 import { stateTable } from '../stateTable';
 
@@ -19,7 +20,7 @@ export function App() {
       </tr>
       </tbody>
       </table>
-      <h1>Duration:</h1>
+      <DurationDisplay stateData={stateData}/>
     </StyledApp>
   );
 }
