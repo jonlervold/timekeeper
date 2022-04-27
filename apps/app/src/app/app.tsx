@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import styled, { createGlobalStyle } from 'styled-components';
 import DurationDisplay from '../components/DurationDisplay';
 import FillBackground from '../components/FillBackground';
 import HeaderBig from '../components/HeaderBig';
