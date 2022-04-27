@@ -1,4 +1,4 @@
-export const stateTable = {
+export const defaultState = {
     startTime: {
       hour: 8,
       minute: 0,

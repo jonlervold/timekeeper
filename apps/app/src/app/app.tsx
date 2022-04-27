@@ -1,25 +1,32 @@
 import { useState } from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import DurationDisplay from '../components/DurationDisplay';
+import HeaderBig from '../components/HeaderBig';
+import HomeContainer from '../components/HomeContainer';
 import TimeSelector from '../components/TimeSelector';
-import { stateTable } from '../stateTable';
+import { defaultState } from '../defaultState';
 
 const StyledApp = styled.div`
-  // Your style here
+  background-color: navajowhite;
+  text-align: center;
+  font-family: Tahoma;
 `;
 
+const FillBackground = createGlobalStyle`
+body {
+  background: gray;
+}`
+
 export function App() {
-  const [stateData, setStateData] = useState(stateTable)
+  const [stateData, setStateData] = useState(defaultState)
   return (
     <StyledApp>
-      <h1>TimeKeeper</h1>
-      <table><tbody>
-        <tr>
-          <td><TimeSelector startStop={"Start"} stateData={stateData} setStateData={setStateData}/></td>
-          <td><TimeSelector startStop={"Stop"} stateData={stateData} setStateData={setStateData}/></td>
-      </tr>
-      </tbody>
-      </table>
+       <FillBackground/>
+      <HeaderBig>TimeKeeper</HeaderBig>
+      <HomeContainer>
+          <TimeSelector startStop={"Start"} stateData={stateData} setStateData={setStateData}/>
+          <TimeSelector startStop={"Stop"} stateData={stateData} setStateData={setStateData}/>
+      </HomeContainer>
       <DurationDisplay stateData={stateData}/>
     </StyledApp>
   );

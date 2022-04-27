@@ -1,4 +1,4 @@
-import { stateInterface } from './../../stateTable';
+import { stateInterface } from './../../defaultState';
 const handleAmPmClick = (stateData: stateInterface, setStateData: React.Dispatch<React.SetStateAction<stateInterface>>, startStop: string, amPm: string) => {
 
     if (startStop === "Start") {
@@ -39,7 +39,7 @@ const handleAmPmClick = (stateData: stateInterface, setStateData: React.Dispatch
               setStateData(newState);
         }
     }
-    
+
     if (startStop === "Stop") {
         if (amPm === "PM") {
             const newState = {

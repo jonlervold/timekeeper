@@ -1,52 +1,30 @@
-import { stateInterface } from "../stateTable"
+
+import getDisplayTotals from "../app/util/getDisplayTotals";
+import getHourCount from "../app/util/getHourCount";
+import { stateInterface } from "../defaultState";
+import HeaderBig from "./HeaderBig";
 
 type Props = {
     stateData: stateInterface;
   }
 
+type DisplayTotalsProps = {
+    displayHourTotal: number, 
+    displayMinuteTotal: number, 
+    decimalVersion: number}
+
 const DurationDisplay = ({stateData}: Props) => {
 
-    const startAmPm = stateData.startTime.amPm
-    const stopAmPm = stateData.stopTime.amPm
-    const startHour = stateData.startTime.hour
-    const stopHour = stateData.stopTime.hour
-    const startMinute = stateData.startTime.minute
-    const stopMinute = stateData.stopTime.minute
-    
+    const hourCount = getHourCount(stateData.startTime.hour, stateData.stopTime.hour, stateData.startTime.amPm, stateData.stopTime.amPm)
+    const minuteCount = stateData.stopTime.minute - stateData.startTime.minute
 
-    let hourCount = 0
+    const displayTotals: DisplayTotalsProps = getDisplayTotals(hourCount, minuteCount)
 
-    if ((startAmPm === "AM" && stopAmPm === "AM") || (startAmPm === "PM" && stopAmPm === "PM")) {
-        if (stopHour < startHour){
-        hourCount = stopHour + 24 - startHour
-        } else {
-            hourCount = stopHour - startHour
-        }
-    } else if ((startAmPm === "AM" && stopAmPm === "PM") || (startAmPm === "PM" && stopAmPm === "AM")) {
-        hourCount = stopHour + 12 - startHour
-    }
+    return (
+        <HeaderBig>{displayTotals.displayHourTotal > 0 && <>{displayTotals.displayHourTotal} hour{displayTotals.displayHourTotal !== 1 && "s"} & </>}{displayTotals.displayMinuteTotal} minutes / {displayTotals.decimalVersion.toFixed(2)} hours
+        </HeaderBig>
+    )
 
-    const minuteCount = stopMinute - startMinute
-
-    let displayHourTotal = hourCount
-    let displayMinuteTotal = minuteCount
-
-    if (minuteCount < 0) {
-        displayHourTotal = hourCount - 1;
-        displayMinuteTotal = 60 - Math.abs(minuteCount)
-    }
-
-    const decimalVersion = displayHourTotal + (displayMinuteTotal / 60)
-
-
-
-
-    return (<div>
-        <h1>Duration:<br/>{displayHourTotal > 0 && <>{displayHourTotal} hours & </>}{displayMinuteTotal} minutes<br/>
-        or<br/>
-        {decimalVersion.toFixed(2)} hours
-        </h1>
-    </div>)
 }
 
 export default DurationDisplay

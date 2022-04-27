@@ -1,7 +1,7 @@
-import { stateInterface } from "../../stateTable";
+import { stateInterface } from "../../defaultState";
+
 
 const handleMinuteClick = (stateData: stateInterface, setStateData: React.Dispatch<React.SetStateAction<stateInterface>>, startStop: string, minute: number) => {
-    console.log(startStop, minute)
 
     if (startStop === "Start") {
             const newState = {

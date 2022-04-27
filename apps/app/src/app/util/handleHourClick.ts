@@ -1,4 +1,4 @@
-import { stateInterface } from "../../stateTable";
+import { stateInterface } from './../../defaultState';
 
 const handleHourClick = (stateData: stateInterface, setStateData: React.Dispatch<React.SetStateAction<stateInterface>>, startStop: string, hour: number) => {
 
