@@ -2,6 +2,7 @@ import handleAmPmClick from "../app/util/handleAmPmClick";
 import handleHourClick from "../app/util/handleHourClick";
 import handleMinuteClick from "../app/util/handleMinuteClick";
 import { stateInterface } from "../stateTable";
+import Button from "./Button";
 
 type Props = {
     stateData: stateInterface;
@@ -22,28 +23,28 @@ const TimeSelector = ({stateData, setStateData, startStop}: Props) => {
     }
 
     const hoursLines: Array<Array<number>> = [[0, 4], [4, 8], [8, 12]]
-    const minutesLines: Array<Array<number>> = [[0, 9], [10, 20], [20, 30], [30, 40], [40, 50], [50, 60]]
+    const minutesLines: Array<Array<number>> = [[0, 10], [10, 20], [20, 30], [30, 40], [40, 50], [50, 60]]
 
     return(<div>
         <h2>{startStop} Time</h2>
         <h3>Hour</h3>
         <table>
             <tbody>
-                {hoursLines.map(innerArray => <tr>{possibleHours.slice(innerArray[0], innerArray[1]).map((value:number, index: number) => (<td key={index}><button onClick={() => handleHourClick(stateData, setStateData, startStop, value)}>{value}</button></td>))}</tr>)}
+                {hoursLines.map(innerArray => <tr>{possibleHours.slice(innerArray[0], innerArray[1]).map((value:number, index: number) => (<td key={index}><Button onClick={() => handleHourClick(stateData, setStateData, startStop, value)}>{value}</Button></td>))}</tr>)}
             </tbody>
         </table>
         <h3>Minute</h3>
         <table>
             <tbody>
-                {minutesLines.map(innerArray => <tr>{possibleMinutes.slice(innerArray[0], innerArray[1]).map((value:number, index: number) => (<td key={index}><button onClick={() => handleMinuteClick(stateData, setStateData, startStop, value)}>{value}</button></td>))}</tr>)}
+                {minutesLines.map(innerArray => <tr>{possibleMinutes.slice(innerArray[0], innerArray[1]).map((value:number, index: number) => (<td key={index}><Button onClick={() => handleMinuteClick(stateData, setStateData, startStop, value)}>{value}</Button></td>))}</tr>)}
             </tbody>
         </table>
         <h3>AM/PM</h3>
         <table>
             <tbody>
                 <tr>
-                <td><button onClick={() => handleAmPmClick(stateData, setStateData, startStop, "AM")}>AM</button></td>
-                <td><button onClick={() => handleAmPmClick(stateData, setStateData, startStop, "PM")}>PM</button></td>
+                <td><Button onClick={() => handleAmPmClick(stateData, setStateData, startStop, "AM")}>AM</Button></td>
+                <td><Button onClick={() => handleAmPmClick(stateData, setStateData, startStop, "PM")}>PM</Button></td>
                 </tr>
             </tbody>
         </table>
