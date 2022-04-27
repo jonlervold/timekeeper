@@ -1,21 +1,12 @@
 import { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import DurationDisplay from '../components/DurationDisplay';
+import FillBackground from '../components/FillBackground';
 import HeaderBig from '../components/HeaderBig';
 import HomeContainer from '../components/HomeContainer';
+import StyledApp from '../components/StyledApp';
 import TimeSelector from '../components/TimeSelector';
 import { defaultState } from '../defaultState';
-
-const StyledApp = styled.div`
-  background-color: navajowhite;
-  text-align: center;
-  font-family: Tahoma;
-`;
-
-const FillBackground = createGlobalStyle`
-body {
-  background: gray;
-}`
 
 export function App() {
   const [stateData, setStateData] = useState(defaultState)
