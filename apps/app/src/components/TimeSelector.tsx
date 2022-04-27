@@ -21,25 +21,21 @@ const TimeSelector = ({stateData, setStateData, startStop}: Props) => {
         possibleMinutes.push(i)
     }
 
+    const hoursLines: Array<Array<number>> = [[0, 4], [4, 8], [8, 12]]
+    const minutesLines: Array<Array<number>> = [[0, 9], [10, 20], [20, 30], [30, 40], [40, 50], [50, 60]]
+
     return(<div>
         <h2>{startStop} Time</h2>
         <h3>Hour</h3>
         <table>
             <tbody>
-                <tr>{possibleHours.slice(0,4).map((value:number, index: number) => (<td key={index}><button onClick={() => handleHourClick(stateData, setStateData, startStop, value)}>{value}</button></td>))}</tr>
-                <tr>{possibleHours.slice(4,8).map((value:number, index: number) => (<td key={index}><button onClick={() => handleHourClick(stateData, setStateData, startStop, value)}>{value}</button></td>))}</tr>
-                <tr>{possibleHours.slice(8,12).map((value:number, index: number) => (<td key={index}><button onClick={() => handleHourClick(stateData, setStateData, startStop, value)}>{value}</button></td>))}</tr>
+                {hoursLines.map(innerArray => <tr>{possibleHours.slice(innerArray[0], innerArray[1]).map((value:number, index: number) => (<td key={index}><button onClick={() => handleHourClick(stateData, setStateData, startStop, value)}>{value}</button></td>))}</tr>)}
             </tbody>
         </table>
         <h3>Minute</h3>
         <table>
-        <tbody>
-                <tr>{possibleMinutes.slice(0,10).map((value:number, index: number) => (<td key={index}><button onClick={() => handleMinuteClick(stateData, setStateData, startStop, value)}>{value}</button></td>))}</tr>
-                <tr>{possibleMinutes.slice(10,20).map((value:number, index: number) => (<td key={index}><button onClick={() => handleMinuteClick(stateData, setStateData, startStop, value)}>{value}</button></td>))}</tr>
-                <tr>{possibleMinutes.slice(20,30).map((value:number, index: number) => (<td key={index}><button onClick={() => handleMinuteClick(stateData, setStateData, startStop, value)}>{value}</button></td>))}</tr>
-                <tr>{possibleMinutes.slice(30,40).map((value:number, index: number) => (<td key={index}><button onClick={() => handleMinuteClick(stateData, setStateData, startStop, value)}>{value}</button></td>))}</tr>
-                <tr>{possibleMinutes.slice(40,50).map((value:number, index: number) => (<td key={index}><button onClick={() => handleMinuteClick(stateData, setStateData, startStop, value)}>{value}</button></td>))}</tr>
-                <tr>{possibleMinutes.slice(50,60).map((value:number, index: number) => (<td key={index}><button onClick={() => handleMinuteClick(stateData, setStateData, startStop, value)}>{value}</button></td>))}</tr>
+            <tbody>
+                {minutesLines.map(innerArray => <tr>{possibleMinutes.slice(innerArray[0], innerArray[1]).map((value:number, index: number) => (<td key={index}><button onClick={() => handleMinuteClick(stateData, setStateData, startStop, value)}>{value}</button></td>))}</tr>)}
             </tbody>
         </table>
         <h3>AM/PM</h3>
