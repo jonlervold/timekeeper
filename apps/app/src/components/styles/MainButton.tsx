@@ -1,15 +1,17 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 const MainButton = styled.button`
   background: bisque;
   border-radius: 8px;
   border: 2px solid black;
   color: black;
-  width:100%;
+  width: 100%;
   overflow: hidden;
-  &:active{
+  padding-left: 0;
+  padding-right: 0;
+  &:active {
     background-color: brown;
   }
-  `
+`;
 
-  export default MainButton
+export default MainButton;
