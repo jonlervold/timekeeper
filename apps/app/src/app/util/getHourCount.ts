@@ -7,20 +7,39 @@ const getHourCount = (
   let hourCount = 0;
 
   if (startAmPm === stopAmPm) {
-    if (stopHour < startHour) {
-      hourCount = stopHour + 24 - startHour;
+    if (startHour === stopHour) {
+      hourCount = 0;
     } else {
-      if (stopHour === 12) {
-        hourCount = stopHour + 12 - startHour;
+      if (startHour === 12) {
+        hourCount = stopHour;
       } else {
-        hourCount = stopHour - startHour;
+        if (stopHour === 12) {
+          hourCount = stopHour + 12 - startHour;
+        } else {
+          if (stopHour > startHour) {
+            hourCount = stopHour - startHour;
+          } else {
+            hourCount = stopHour + 24 - startHour;
+          }
+        }
       }
     }
-  } else if (startAmPm !== stopAmPm) {
-    if (stopHour !== 12) {
-      hourCount = stopHour + 12 - startHour;
+  }
+
+  if (startAmPm !== stopAmPm) {
+    if (startHour === stopHour) {
+      hourCount = 12;
     } else {
-      hourCount = stopHour - startHour;
+      if (startHour === 12) {
+        hourCount = stopHour + 12;
+      } else {
+        if (stopHour === 12) {
+          hourCount = stopHour - startHour;
+        } else {
+          // startHour > stopHour & startHour < stopHour same formula
+          hourCount = stopHour + 12 - startHour;
+        }
+      }
     }
   }
 
